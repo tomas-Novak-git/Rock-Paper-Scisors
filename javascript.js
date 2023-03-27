@@ -27,6 +27,5 @@ function playRound(playerSelection, computerSelection) {
     return `"You lose. Computers : "${computerSelection}" beats your: "${playerSelection}"!"`;
     }
 }
-
 console.log(playRound(playerSelection, computerSelection))
 console.log("Player: " + playerPoints + " | " + "Computer: " + computerPoints)
