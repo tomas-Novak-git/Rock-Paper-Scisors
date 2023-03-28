@@ -1,32 +1,73 @@
-// this function generates choice for computer
-function getComputerChoice() {
-    let computerChoice = Math.floor((Math.random() * 3) + 1);
-        if (computerChoice === 1){
-        return "rock";
-    } else if (computerChoice === 2) {
-        return "paper"
-    } else (computerChoice === 3)
-        return "scissors"
-}
-// variables that stores player choices and computers choices. 
-let playerSelection = '';
-playerSelection = playerSelection.toLowerCase();
-const computerSelection = getComputerChoice();
+const options = ["rock", "paper", "scissors"];
 
-function playRound(playerSelection, computerSelection) {
-    playerSelection = prompt("Rock, Paper or Scissors???");
-    if (playerSelection == computerSelection) {
-    return "Amazing, it's a DRAW!!!"
-    } else if (playerSelection == "scissors" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "rock" && computerSelection == "scissors"){
-        playerPoints = +1;
-        return `"You won this round, your: "${playerSelection}" beats computers: "${computerSelection}"!"`;
-    } else {
-        computerPoints = +1;
-    return `"You lose. Computers : "${computerSelection}" beats your: "${playerSelection}"!"`;
+function getComputerChoice() {
+    const choice = options[Math.floor(Math.random() * options.length)];
+    return choice;
+}
+
+function checkWinner(playerSelection, computerSelection){
+    if (playerSelection == computerSelection){
+        return "Tie";
+    }
+    else if (
+        (playerSelection === "scissors" && computerSelection === "paper")
+     || (playerSelection === "paper" && computerSelection === "rock")
+     || (playerSelection === "rock" && computerSelection === "scissors")
+     ){
+        return "Player";
+     }
+     else {
+        return "Computer";
+     }
+}
+
+function playRound(playerSelection, computerSelection){
+    const result = checkWinner(playerSelection, computerSelection);
+    if (result == "Tie"){
+        return "It's a Tie!"
+    }
+    else if(result == "Player"){
+        return `You win! ${playerSelection} beats ${computerSelection}`
+    }
+    else{
+        return `You Lose ${computerSelection} beats ${playerSelection}`
     }
 }
-// Variables that stores points and prints results in console
-let computerPoints = 0;
-let playerPoints = 0;
+const playerSelection = getPlayerChoice();
+const computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
-console.log("Player: " + playerPoints + " | " + "Computer: " + computerPoints);
+
+function getPlayerChoice(){
+    let validatedInput = false;
+    while(validatedInput == false){
+        const choice = prompt("Rock Paper Scissors");
+        if (choice == null){
+            continue;
+        }
+        const choiceInLower = choice.toLowerCase();
+        if(options.includes(choiceInLower)){
+            validatedInput = true;
+            return choiceInLower;
+        }
+    }
+}
+
+function game(){
+    let scorePlayer = 0;
+    let scoreComputer = 0;
+    for (let i = 0; i < 5; i++) {
+    const playerSelection = getPlayerChoice();
+    const computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection));
+    if (checkWinner(playerSelection, computerSelection) == "Player"){
+        scorePlayer++;
+    } else if(checkWinner(playerSelection, computerSelection) == "Computer")
+        scoreComputer++;
+    }
+    if(scorePlayer > scoreComputer){
+        console.log(`Player is the winner with ${scorePlayer} points`);
+    } else if(scoreComputer > scorePlayer){
+        console.log(`Computer is the winner with ${scoreComputer} points`)
+    }
+}
+game()
