@@ -1,10 +1,25 @@
 const options = ["rock", "paper", "scissors"];
-
+// Computer produced choice
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
 }
-
+// Players choice
+function getPlayerChoice(){
+    let validatedInput = false;
+    while(validatedInput == false){
+        const choice = prompt("Rock Paper Scissors");
+        if (choice == null){
+            continue;
+        }
+        const choiceInLower = choice.toLowerCase();
+        if(options.includes(choiceInLower)){
+            validatedInput = true;
+            return choiceInLower;
+        }
+    }
+}
+//  winner deciding function
 function checkWinner(playerSelection, computerSelection){
     if (playerSelection == computerSelection){
         return "Tie";
@@ -21,6 +36,7 @@ function checkWinner(playerSelection, computerSelection){
      }
 }
 
+// One round of game
 function playRound(playerSelection, computerSelection){
     const result = checkWinner(playerSelection, computerSelection);
     if (result == "Tie"){
@@ -37,21 +53,8 @@ const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
 
-function getPlayerChoice(){
-    let validatedInput = false;
-    while(validatedInput == false){
-        const choice = prompt("Rock Paper Scissors");
-        if (choice == null){
-            continue;
-        }
-        const choiceInLower = choice.toLowerCase();
-        if(options.includes(choiceInLower)){
-            validatedInput = true;
-            return choiceInLower;
-        }
-    }
-}
 
+// Looping funciton that recalls game 5 times and gives points. at 5th, announces winner.
 function game(){
     let scorePlayer = 0;
     let scoreComputer = 0;
