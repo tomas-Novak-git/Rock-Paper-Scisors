@@ -1,24 +1,21 @@
 const options = ["rock", "paper", "scissors"];
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+
 // Computer produced choice
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
 }
-// Players choice
-function getPlayerChoice(){
-    let validatedInput = false;
-    while(validatedInput == false){
-        const choice = prompt("Rock Paper Scissors");
-        if (choice == null){
-            continue;
-        }
-        const choiceInLower = choice.toLowerCase();
-        if(options.includes(choiceInLower)){
-            validatedInput = true;
-            return choiceInLower;
-        }
-    }
-}
+rock.addEventListener('click', playRound);
+paper.addEventListener('click', (playRound("paper", computerSelection)));
+scissors.addEventListener('click', (playRound("scissors", computerSelection)));
+//score
+let scorePlayer = 0;
+let scoreComputer = 0;
+
+
 //  winner deciding function
 function checkWinner(playerSelection, computerSelection){
     if (playerSelection == computerSelection){
@@ -29,14 +26,17 @@ function checkWinner(playerSelection, computerSelection){
      || (playerSelection === "paper" && computerSelection === "rock")
      || (playerSelection === "rock" && computerSelection === "scissors")
      ){
+        scorePlayer += 1;
         return "Player";
      }
      else {
+        scoreComputer += 1;
         return "Computer";
      }
 }
-let scorePlayer = 0;
-let scoreComputer = 0;
+
+
+
 // One round of game
 function playRound(playerSelection, computerSelection){
     const result = checkWinner(playerSelection, computerSelection);
@@ -44,7 +44,7 @@ function playRound(playerSelection, computerSelection){
         return "It's a Tie!"
     }
     else if(result == "Player"){
-        scorePlayer = +1;
+        scorePlayer +1;
         return `You win! ${playerSelection} beats ${computerSelection}`;
     }
     else{
@@ -53,8 +53,9 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-const playerSelection = getPlayerChoice();
+let playerSelection = "";
 const computerSelection = getComputerChoice();
+
 console.log(playRound(playerSelection, computerSelection));
 
 
@@ -71,10 +72,9 @@ console.log(playRound(playerSelection, computerSelection));
 //     } else if(checkWinner(playerSelection, computerSelection) == "Computer")
 //         scoreComputer++;
 //     }
-    if(scorePlayer > scoreComputer){
-        console.log(`Player is the winner with ${scorePlayer} points`);
-    } else if(scoreComputer > scorePlayer){
-        console.log(`Computer is the winner with ${scoreComputer} points`)
-    }
-}
-game()
+//     if(scorePlayer > scoreComputer){
+//         console.log(`Player is the winner with ${scorePlayer} points`);
+//     } else if(scoreComputer > scorePlayer){
+//         console.log(`Computer is the winner with ${scoreComputer} points`)
+//     }
+// game()
