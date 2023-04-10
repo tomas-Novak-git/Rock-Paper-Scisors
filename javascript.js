@@ -35,7 +35,8 @@ function checkWinner(playerSelection, computerSelection){
         return "Computer";
      }
 }
-
+let scorePlayer = 0;
+let scoreComputer = 0;
 // One round of game
 function playRound(playerSelection, computerSelection){
     const result = checkWinner(playerSelection, computerSelection);
@@ -43,30 +44,33 @@ function playRound(playerSelection, computerSelection){
         return "It's a Tie!"
     }
     else if(result == "Player"){
-        return `You win! ${playerSelection} beats ${computerSelection}`
+        scorePlayer = +1;
+        return `You win! ${playerSelection} beats ${computerSelection}`;
     }
     else{
+        scoreComputer = +1;
         return `You Lose ${computerSelection} beats ${playerSelection}`
     }
 }
+
 const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
 
 
 // Looping funciton that recalls game 5 times and gives points. at 5th, announces winner.
-function game(){
-    let scorePlayer = 0;
-    let scoreComputer = 0;
-    for (let i = 0; i < 5; i++) {
-    const playerSelection = getPlayerChoice();
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
-    if (checkWinner(playerSelection, computerSelection) == "Player"){
-        scorePlayer++;
-    } else if(checkWinner(playerSelection, computerSelection) == "Computer")
-        scoreComputer++;
-    }
+// function game(){
+//     let scorePlayer = 0;
+//     let scoreComputer = 0;
+//     for (let i = 0; i < 5; i++) {
+//     const playerSelection = getPlayerChoice();
+//     const computerSelection = getComputerChoice();
+//     console.log(playRound(playerSelection, computerSelection));
+//     if (checkWinner(playerSelection, computerSelection) == "Player"){
+//         scorePlayer++;
+//     } else if(checkWinner(playerSelection, computerSelection) == "Computer")
+//         scoreComputer++;
+//     }
     if(scorePlayer > scoreComputer){
         console.log(`Player is the winner with ${scorePlayer} points`);
     } else if(scoreComputer > scorePlayer){
