@@ -2,18 +2,42 @@ const options = ["rock", "paper", "scissors"];
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
-
+const gameText = document.getElementById("gameText");
+const gameNumber = document.getElementById("gameNumber");
+const gameMsg = document.getElementById("gameMsg");
+const playerPoints = document.getElementById("playerPoints");
+const compPoints = document.getElementById("compPoints");
 // Computer produced choice
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
 }
-rock.addEventListener('click', playRound);
-paper.addEventListener('click', (playRound("paper", computerSelection)));
-scissors.addEventListener('click', (playRound("scissors", computerSelection)));
+// button event listeners. Starts 1 round 
+rock.addEventListener('click', (e) => {
+    playerSelection = "rock";
+    playRound(playerSelection, computerSelection);
+    gameNumber.textContent = `Round ${gameCount}`;
+});
+paper.addEventListener('click', (e) => {
+    playerSelection = "paper";
+    playRound(playerSelection, computerSelection);
+    gameNumber.textContent = `Round ${gameCount}`;
+})
+scissors.addEventListener('click', (e) => {
+    playerSelection = "scissors";
+    playRound(playerSelection, computerSelection);
+    gameNumber.textContent = `Round ${gameCount}`;
+})
+
+
+// Player and Comp choices
+let playerSelection = "";
+const computerSelection = getComputerChoice();
+
 //score
 let scorePlayer = 0;
 let scoreComputer = 0;
+let gameCount = 0;
 
 
 //  winner deciding function
@@ -26,11 +50,9 @@ function checkWinner(playerSelection, computerSelection){
      || (playerSelection === "paper" && computerSelection === "rock")
      || (playerSelection === "rock" && computerSelection === "scissors")
      ){
-        scorePlayer += 1;
         return "Player";
      }
      else {
-        scoreComputer += 1;
         return "Computer";
      }
 }
@@ -40,41 +62,21 @@ function checkWinner(playerSelection, computerSelection){
 // One round of game
 function playRound(playerSelection, computerSelection){
     const result = checkWinner(playerSelection, computerSelection);
+    gameCount++;
     if (result == "Tie"){
-        return "It's a Tie!"
+        gameMsg.textContent = "It's a Tie! Nobody gets point." ;
     }
     else if(result == "Player"){
-        scorePlayer +1;
-        return `You win! ${playerSelection} beats ${computerSelection}`;
+        scorePlayer++;
+        gameMsg.textContent = `You win this round! Your ${playerSelection} beats ${computerSelection}.`;
+        playerPoints.textContent =`${scorePlayer}`
     }
     else{
-        scoreComputer = +1;
-        return `You Lose ${computerSelection} beats ${playerSelection}`
+        scoreComputer++;
+        gameMsg.textContent = `You Lose this round. Comps ${computerSelection} beats ${playerSelection}.`;
+        compPoints.textContent =`${scoreComputer}`
+
     }
 }
 
-let playerSelection = "";
-const computerSelection = getComputerChoice();
 
-console.log(playRound(playerSelection, computerSelection));
-
-
-// Looping funciton that recalls game 5 times and gives points. at 5th, announces winner.
-// function game(){
-//     let scorePlayer = 0;
-//     let scoreComputer = 0;
-//     for (let i = 0; i < 5; i++) {
-//     const playerSelection = getPlayerChoice();
-//     const computerSelection = getComputerChoice();
-//     console.log(playRound(playerSelection, computerSelection));
-//     if (checkWinner(playerSelection, computerSelection) == "Player"){
-//         scorePlayer++;
-//     } else if(checkWinner(playerSelection, computerSelection) == "Computer")
-//         scoreComputer++;
-//     }
-//     if(scorePlayer > scoreComputer){
-//         console.log(`Player is the winner with ${scorePlayer} points`);
-//     } else if(scoreComputer > scorePlayer){
-//         console.log(`Computer is the winner with ${scoreComputer} points`)
-//     }
-// game()

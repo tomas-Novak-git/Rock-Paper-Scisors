@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="javascript.js"></script>
+    <!-- <script src="javascript.js"></script> -->
     <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
@@ -15,14 +15,17 @@
 <body>
     <div class="mainBlock">
         <h1>ROCK, PAPER, SCISSORS</h1>
-        <div class="pointText">
-            <P>Pick your poison</P>
+            <h2 id="gameNumber">Good Luck!</h2>
+        <div class="score">
+        <p>Player Score : <span id="playerPoints" class="whiteText">0</span></p>
+        <p>Computer Score : <span id="compPoints" class="whiteText">0</span></p>
         </div>
-
+        <p id="gameMsg" class="whiteText"></p>
     <div class="buttons">
     <button id="rock" class="button" type="button">ROCK</button>
     <button id="paper" class="button">PAPER</button>
     <button id="scissors" class="button">SCISSORS</button>
     </div>
+    <script src="javascript.js"></script>
 </body>
 </html>
