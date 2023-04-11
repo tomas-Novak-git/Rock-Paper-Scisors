@@ -80,12 +80,3 @@ function playRound(playerSelection, computerSelection){
 
     }
 }
-// game Over function
-function gameOver() {
-    if (scorePlayer > scoreComputer) {
-        gameNumber.textContent = `Game Over! And the winner is Player`;
-    } else {
-        gameNumber.textContent = `Game Over! And the winner is Computer`;
-    }
-
-}
