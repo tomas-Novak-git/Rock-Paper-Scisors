@@ -63,7 +63,9 @@ function checkWinner(playerSelection, computerSelection){
 function playRound(playerSelection, computerSelection){
     const result = checkWinner(playerSelection, computerSelection);
     gameCount++;
-    if (result == "Tie"){
+    if (scorePlayer == 5 || scoreComputer == 5){
+        gameOver();
+    }  else if (result == "Tie"){
         gameMsg.textContent = "It's a Tie! Nobody gets point." ;
     }
     else if(result == "Player"){
@@ -78,5 +80,12 @@ function playRound(playerSelection, computerSelection){
 
     }
 }
+// game Over function
+function gameOver() {
+    if (scorePlayer > scoreComputer) {
+        gameNumber.textContent = `Game Over! And the winner is Player`;
+    } else {
+        gameNumber.textContent = `Game Over! And the winner is Computer`;
+    }
 
-
+}
