@@ -7,11 +7,7 @@ const gameNumber = document.getElementById("gameNumber");
 const gameMsg = document.getElementById("gameMsg");
 const playerPoints = document.getElementById("playerPoints");
 const compPoints = document.getElementById("compPoints");
-// Computer produced choice
-function getComputerChoice() {
-    const choice = options[Math.floor(Math.random() * options.length)];
-    return choice;
-}
+
 // button event listeners. Starts 1 round 
 rock.addEventListener('click', (e) => {
     playerSelection = "rock";
@@ -29,10 +25,15 @@ scissors.addEventListener('click', (e) => {
     gameNumber.textContent = `Round ${gameCount}`;
 })
 
-
+// Computer produced choice
+function getComputerChoice() {
+    let choice = options[Math.floor(Math.random() * options.length)];
+    console.log(choice);
+    return choice;
+}
 // Player and Comp choices
 let playerSelection = "";
-const computerSelection = getComputerChoice();
+let computerSelection = getComputerChoice();
 
 //score
 let scorePlayer = 0;
@@ -46,9 +47,9 @@ function checkWinner(playerSelection, computerSelection){
         return "Tie";
     }
     else if (
-        (playerSelection === "scissors" && computerSelection === "paper")
-     || (playerSelection === "paper" && computerSelection === "rock")
-     || (playerSelection === "rock" && computerSelection === "scissors")
+        (playerSelection == "scissors" && computerSelection == "paper")
+     || (playerSelection == "paper" && computerSelection == "rock")
+     || (playerSelection == "rock" && computerSelection == "scissors")
      ){
         return "Player";
      }
@@ -63,20 +64,27 @@ function checkWinner(playerSelection, computerSelection){
 function playRound(playerSelection, computerSelection){
     const result = checkWinner(playerSelection, computerSelection);
     gameCount++;
-    if (scorePlayer == 5 || scoreComputer == 5){
-        gameOver();
-    }  else if (result == "Tie"){
+    getComputerChoice();
+    if (result == "Tie"){
         gameMsg.textContent = "It's a Tie! Nobody gets point." ;
     }
     else if(result == "Player"){
         scorePlayer++;
         gameMsg.textContent = `You win this round! Your ${playerSelection} beats ${computerSelection}.`;
-        playerPoints.textContent =`${scorePlayer}`
+        playerPoints.textContent =`${scorePlayer}`;
     }
     else{
         scoreComputer++;
         gameMsg.textContent = `You Lose this round. Comps ${computerSelection} beats ${playerSelection}.`;
-        compPoints.textContent =`${scoreComputer}`
-
+        compPoints.textContent =`${scoreComputer}`;
     }
 }
+
+// function gameOver(scorePlayer, scoreComputer) {
+//     if (scorePlayer == 5) {
+//         gameMsg.textContent = "And the winner is Player!";
+
+//     } else if (scoreComputer == 5) {
+//         gameMsg.textContent = "And the winner is Computer!";
+//     }   
+// }
