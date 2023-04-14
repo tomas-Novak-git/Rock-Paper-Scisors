@@ -21,6 +21,7 @@ body{
     flex-flow: column;
     justify-content: space-around;
     align-items: center;
+    background-color: #183748;
     height: 45vh;
     width: 70vh;
     border: solid 3px rgb(0, 149, 255);
@@ -57,5 +58,11 @@ body{
 .whiteText {
     color: rgb(207, 232, 255);
     font-size: 600;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+.redText {
+    color: red;
+    font-size: 800;
     letter-spacing: 2px;
 }
