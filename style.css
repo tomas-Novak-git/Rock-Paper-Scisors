@@ -22,6 +22,8 @@ body{
     justify-content: space-around;
     align-items: center;
     background-color: #183748;
+    margin-top: 20vh;
+    margin-bottom: auto;
     height: 45vh;
     width: 70vh;
     border: solid 3px rgb(0, 149, 255);
@@ -67,7 +69,7 @@ body{
     letter-spacing: 2px;
 }
 footer {
-    margin-top: auto;
+    margin-bottom: -1;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
     color: rgb(0, 149, 255);
@@ -75,4 +77,8 @@ footer {
     font-weight: 500;
     text-decoration: underline 0.05em rgba(0,0,0,0);
     position: relative;
+    z-index: -1;
+}
+#resetDiv{
+    margin-bottom: auto;
 }

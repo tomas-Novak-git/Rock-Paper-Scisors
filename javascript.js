@@ -7,8 +7,14 @@ const gameNumber = document.getElementById("gameNumber");
 const gameMsg = document.getElementById("gameMsg");
 const playerPoints = document.getElementById("playerPoints");
 const compPoints = document.getElementById("compPoints");
-const resetButton = document.getElementById("resetButton");
-const buttons = document.getElementsByClassName("buttons")
+const resetDiv = document.getElementById("resetDiv");
+const resetButton = document.createElement("button");
+resetButton.setAttribute("class", "button button:hover whiteText");
+resetButton.textContent = "Again?";
+resetButton.addEventListener("click", () => {
+    reset();
+})
+
 
 // button event listeners. Starts 1 round 
 rock.addEventListener('click', (e) => {
@@ -60,7 +66,7 @@ function playRound(playerSelection){
     }
     else{
         scoreComputer++;
-        gameMsg.textContent = `You Lose this round. Comps ${computerSelection} beats ${playerSelection}.`;
+        gameMsg.textContent = `You lose this round. Comps ${computerSelection} beats ${playerSelection}.`;
         compPoints.textContent =`${scoreComputer}`;
         if (scorePlayer == 5 || scoreComputer == 5) {
             gameOver(scorePlayer, scoreComputer);
@@ -84,10 +90,13 @@ function checkWinner(playerSelection, computerSelection){
         return "Computer";
      }
 }
+// End of the game function - adds reset button under main Block
 function gameOver(scorePlayer, scoreComputer) {
-    document.querySelector("#paper").disabled = true;
     document.querySelector("#rock").disabled = true;
+    document.querySelector("#paper").disabled = true;
     document.querySelector("#scissors").disabled = true;
+    rock.classList.remove("button:hover");
+    resetDiv.appendChild(resetButton); 
 
     if (scorePlayer === 5) {
         gameMsg.textContent = "And the winner is Player!";
@@ -99,17 +108,22 @@ function gameOver(scorePlayer, scoreComputer) {
         playerPoints.classList.remove("whiteText");
     }  
 }
-// to be done ---
-// function reset(){
-//     scoreComputer = 0;
-//     scorePlayer = 0;
-//     gameCount = 0;
-//     document.querySelector("#paper").disabled = false;
-//     document.querySelector("#rock").disabled = false;
-//     document.querySelector("#scissors").disabled = false;
-//     gameNumber.textContent = "Good Luck!";
-//     gameMsg.textContent = "First to 5 points wins!";
-//     buttons.add("#rock");
-//     buttons.add("#scissors");
-//     buttons.add("#paper");
-// }
+
+// returns function to buttons, resets classes on points and score.
+function reset(){
+    scoreComputer = 0;
+    scorePlayer = 0;
+    gameCount = 0;
+    gameNumber.textContent = "Good Luck!";
+    gameMsg.textContent = "First to 5 points wins!";
+    compPoints.textContent = `${scoreComputer}`;
+    playerPoints.textContent = `${scorePlayer}`;
+    playerPoints.classList.remove("redText");
+    playerPoints.classList.add("whiteText");
+    compPoints.classList.remove("redText");
+    compPoints.classList.add("whiteText");
+    document.querySelector("#rock").disabled = false;
+    document.querySelector("#paper").disabled = false;
+    document.querySelector("#scissors").disabled = false;
+    resetButton.remove();
+}
