@@ -56,6 +56,7 @@ function playRound(playerSelection){
         playerSelection = "";
         if (scorePlayer == 5 || scoreComputer == 5) {
             gameOver(scorePlayer, scoreComputer);
+            gameNumber.textContent = "GAME OVER!";
         } 
     }
     else{
@@ -85,14 +86,15 @@ function checkWinner(playerSelection, computerSelection){
      }
 }
 function gameOver(scorePlayer, scoreComputer) {
+    document.querySelector("#paper").disabled = true;
+    document.querySelector("#rock").disabled = true;
+    document.querySelector("#scissors").disabled = true;
+    
     if (scorePlayer === 5) {
-        gameNumber.textContent = "GAME OVER!";
         gameMsg.textContent = "And the winner is Player!";
         compPoints.classList.add("redText");
         compPoints.classList.remove("whiteText");
-
     } else if (scoreComputer === 5) {
-        gameNumber.textContent = "GAME OVER!";
         gameMsg.textContent = "And the winner is Computer!";
         playerPoints.classList.add("redText");
         playerPoints.classList.remove("whiteText");
