@@ -2,4 +2,4 @@
 First Javascript assignment from scratch.
 First it was just console based game.
 Came back and added UI. First project to connect html, css and JS.
-Enjoy - march 2023
+Enjoy - april 2023
