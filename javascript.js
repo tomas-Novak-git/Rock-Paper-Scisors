@@ -56,7 +56,6 @@ function playRound(playerSelection){
         playerSelection = "";
         if (scorePlayer == 5 || scoreComputer == 5) {
             gameOver(scorePlayer, scoreComputer);
-            gameNumber.textContent = "GAME OVER!";
         } 
     }
     else{
@@ -89,7 +88,7 @@ function gameOver(scorePlayer, scoreComputer) {
     document.querySelector("#paper").disabled = true;
     document.querySelector("#rock").disabled = true;
     document.querySelector("#scissors").disabled = true;
-    
+
     if (scorePlayer === 5) {
         gameMsg.textContent = "And the winner is Player!";
         compPoints.classList.add("redText");
