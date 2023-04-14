@@ -66,3 +66,13 @@ body{
     font-size: 800;
     letter-spacing: 2px;
 }
+footer {
+    margin-top: auto;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    color: rgb(0, 149, 255);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: underline 0.05em rgba(0,0,0,0);
+    position: relative;
+}
