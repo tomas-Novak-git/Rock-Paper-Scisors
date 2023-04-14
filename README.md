@@ -1,3 +1,5 @@
 # Rock-Paper-Scisors
 First Javascript assignment from scratch.
-Currently working on repeating functions multiple times autamically.
+First it was just console based game.
+Came back and added UI. First project to connect html, css and JS.
+Enjoy - march 2023
